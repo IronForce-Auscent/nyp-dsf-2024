@@ -1,0 +1,1 @@
+print("Monthly Salary for this month is ${0:.2f}".format((lambda x, y: x*y)(int(input("Total Working Hours: ")), int(input("Hourly Rate: ")))))
