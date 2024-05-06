@@ -1,1 +1,3 @@
-print("Monthly Salary for this month is ${0:.2f}".format((lambda x, y: x*y)(int(input("Total Working Hours: ")), int(input("Hourly Rate: ")))))
+#print("Monthly Salary for this month is ${0:.2f}".format((lambda x, y: x*y)(int(input("Total Working Hours: ")), int(input("Hourly Rate: ")))))
+
+print(message:="Monthly Salary for this month is ${0:.2f}".format(workHours * hourlyRate) if (workHours:=int(input("Total Working Hours: "))) > 0 and (hourlyRate:=int(input("Hourly Rate: "))) > 0 else ("Working hours cannot be less than 0" if workHours < 0 else "Hourly rate cannot be less than 0"))
