@@ -28,27 +28,35 @@ class TestClasses(unittest.TestCase):
         phone.set_make("Apple")
         phone.set_model("iPhone 12")
         phone.set_price(1200)
+        phone.set_quantity(1)
         self.assertEqual(phone.get_make(), "Make: Apple")
         self.assertEqual(phone.get_model(), "Model: iPhone 12")
         self.assertEqual(phone.get_price(), "Price: 1200")
-        self.assertEqual(phone.get_phone_info(), "The price of the Apple iPhone 12 is $1200.00")
+        self.assertEqual(phone.__str__(), "The phone created is Apple iPhone 12 priced at $1200.00. Now has 1 phone in stock.")
 
     def test_phone_error(self):
         phone = Phone()
         phone.set_make("Apple")
         phone.set_model("iPhone 12")
         self.assertEqual(phone.set_price("ABC"), "Price should be in numbers.")
+        phone.set_quantity(1)
         self.assertEqual(phone.get_make(), "Make: Apple")
         self.assertEqual(phone.get_model(), "Model: iPhone 12")
         self.assertEqual(phone.get_price(), "Price: 0")
-        self.assertEqual(phone.get_phone_info(), "The price of the Apple iPhone 12 is $0.00")
+        self.assertEqual(phone.__str__(), "The phone created is Apple iPhone 12 priced at $0.00. Now has 1 phone in stock.")
 
     def test_salesperson(self):
+        phone = Phone()
+        phone.set_make("Apple")
+        phone.set_model("iPhone 12")
+        phone.set_price(1200)
+        phone.set_quantity(1)
+        self.assertEqual(phone.__str__(), "The phone created is Apple iPhone 12 priced at $1200.00. Now has 1 phone in stock.")  
         salesperson = Salesperson()
         salesperson.set_name("Mary")
-        salesperson.salesperson_commission(1500)
+        salesperson.salesperson_sold(phone)
         self.assertEqual(salesperson.get_name(), "Name: Mary")
-        self.assertEqual(salesperson.__str__(), "The commission for salesperson Mary is $30.00")
+        self.assertEqual(salesperson.__str__(), "Salesperson Mary sold Apple iPhone 12 at $1200 and earned a commission of $24.00.")
 
 # This block ensures that the tests run when the script is executed
 if __name__ == '__main__':
