@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ImageGallery</title>
+<style type="text/css">
+
+
+#imageDiv img {
+	width:100px;
+	height:100px;
+	border:1px solid white;
+	margin:9px;
+}
+
+#imageDiv {
+	width:800px;
+	height:120px;
+	background-color:blue;
+	margin:auto;
+}
+
+#imageDiv li {
+	display:inline-block;
+	width:104px;
+	height:120px;
+	float:left;
+	margin:2px;
+}
+
+#imageDiv img:hover {
+	border:5px solid red;
+	-webkit-transform:rotate(15deg);
+}
+
+#selectedImage {
+	width:300px;
+	height:300px;
+	display:block;
+	margin:auto;
+}
+
+</style>
+<script>
+function showPicture(theImg) {
+	var image = theImg.src;
+	document.getElementById("selectedImage").src = image;
+
+}
+
+</script>
+</head>
+<body>
+<img id="selectedImage" src="images/basketBear.jpg"/>
+<div id="imageDiv">
+<ul>
+<li><img src="images/friendshipBear.jpg" onclick="showPicture(this);"/></li>
+<li><img src="images/basketBear.jpg" onclick="showPicture(this);"/></li>
+<li><img src="images/gentlemanBear.jpg" onclick="showPicture(this);"/></li>
+<li><img src="images/ladyBear.jpg" onclick="showPicture(this);"/></li>
+<li><img src="images/panda.jpg" onclick="showPicture(this);"/></li>
+<li><img src="images/snowBear.jpg" onclick="showPicture(this);"/></li>
+
+</ul>
+</div>
+
+</body>
+</html>

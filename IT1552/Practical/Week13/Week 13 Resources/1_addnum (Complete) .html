@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <title>JavaScript - using function</title>
+  <script>
+    function add() {
+      // get the value of element with id n1
+      // get the value of element with id n2
+      // calculate result
+      // display the result at the <span> of id result
+
+        var n1 = document.getElementById("n1").value;
+        var n2 = document.getElementById("n2").value;
+        var result = parseInt(n1) + parseInt(n2);
+        document.getElementById("result").innerHTML = result;
+    }
+  </script>
+</head>
+
+<body>
+  <label>First Number:<input type="number" id="n1" /></label><br>
+  <label>Second Number:<input type="number" id="n2" /></label><br>
+  <input type="button" onclick="add()" value="add">
+  <p>
+    Result = <span id="result"></span>
+  </p>
+</body>
+
+</html>

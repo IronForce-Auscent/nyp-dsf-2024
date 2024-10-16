@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<style>
+#wrapper {
+	width:1000px;
+	height:auto;
+	margin:auto;
+}
+#imageDiv p {
+	text-align:center;
+}
+
+#imageDiv ul {
+	list-style-type:none;
+}
+
+#imageDiv ul li {
+	float:left;
+	display:inline-block;
+	height:180px;
+	border:4px solid black;
+	margin:10px;
+}
+
+#theImage {
+	width:250px;
+	height:250px;
+	display:block;
+	margin:auto;
+}
+
+#question {
+	display:none;
+}
+</style>
+<script>
+var nameOfImages=["friendshipBear","basketBear","gentlemanBear","ladyBear","panda","snowBear"];
+var counter=[0,0,0,0,0,0]; // keeping the number times the pictures appear
+var targetIndex; // to store the index of the randomly picked image for the question
+var timer1,timer2; // timer1 for setInterval (how long to change a image), timer2 for setTimeout ( duration of flashing the images )
+var lastIndex=0; // keep index of last picture, to prevent repeating picture at the next immediate subsequent timeslot
+function flashImages(){
+
+	var index=Math.floor(Math.random()*1000)%images.length;
+	if (lastIndex==index) {
+		if (index<images.length-1) 
+			index++;
+		else 
+			index=0;
+	}
+	lastIndex=index;
+	counter[index]++;
+	
+	// flash the picture selected
+	
+}
+
+function startGame(){
+	// reset the counter
+	// reset the answer
+	// hide the question
+	// set timer to flash randomly picked picture every 400 ticks
+	// set timer to stop the flashing of pictures
+}
+
+function stopFlash() {
+	// clear the timers
+	// randomly pick a target picture for question
+	// set the display picture back to blank.png
+	// update name of target picture at the span and show the question
+	
+}
+
+function checkAnswer(){
+	// check the guess value and the actual value
+	// alert to indicate whether player has the right guess
+}
+</script>
+</head>
+<body>
+<div id="wrapper">
+<div id="clue"></div>
+<div id="imageDiv">
+<ul>
+<li><img src="images/friendshipBear.jpg" title="friendshipBear"/><p>FriendShipBear</p></li>
+<li><img src="images/basketBear.jpg" title="basketBear"/><p>basketBear</p></li>
+<li><img src="images/gentlemanBear.jpg" title="gentlemanBear" /><p>gentlemanBear</p></li>
+<li><img src="images/ladyBear.jpg" title="ladyBear" /><p>ladyBear</p></li>
+<li><img src="images/panda.jpg" title="panda" /><p>panda</p></li>
+<li><img src="images/snowBear.jpg" title="snowBear" /><p>snowBear</p></li>
+</ul>
+</div>
+<img id="theImage" src="images/blank.png" alt=""/>
+<input type="button" value="Start" onclick="startGame();"/>
+<div id="question"><p>How many times did you see the <span id="targetPic"></span>?</p>
+<p>Your answer: <input type="number" id="answer" value="0" size="1"/><input type="button" value="check" onclick="checkAnswer();"></p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.image {
+    overflow: hidden;
+}
+
+.desc {
+    word-wrap: break-word;
+}
+
+/* CSS for the Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #e5e5e5;
+    height: 60px;
+}
+
+.logo img {
+    height: auto;
+    max-width: 100%;
+}

@@ -1,0 +1,27 @@
+<html lang="en" class="script">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Part a
+        let message_a = "";
+        for (i = 1; i <= 4; i++) {
+            message_a += i + " ";
+            message_a.trim();
+            document.write(message_a + "<br>");
+        }
+
+        // Part b
+        let n = 5;
+        for (i = 1; i <= n; i++) {
+            console.log(i)
+            let padding = n - i;
+            let message_b = 'x'.repeat(padding) + "*".repeat(i * 2 - 1) + 'x'.repeat(padding) + "<br>";
+            document.write(message_b);
+        }
+    </script>
+</body>
+</html>

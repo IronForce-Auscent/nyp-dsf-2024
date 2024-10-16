@@ -1,0 +1,19 @@
+<script>
+var students = [];
+var scores = [];
+
+for (i = 0; i < 4; i++) {
+    var student = prompt("Enter student name: ");
+    students.push(student);
+}
+
+for (i = 0; i < 4; i++) {
+    var currentStudent = students[i];
+    var score = parseInt(prompt("Enter score for " + currentStudent + ": "));
+    scores.push(score);
+}
+
+for (i = 0; i < 4; i++) {
+    console.log((i + 1) + ". " + students[i] + " scored " + scores[i]);
+}
+</script>

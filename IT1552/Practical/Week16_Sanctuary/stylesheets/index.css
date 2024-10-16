@@ -1,0 +1,292 @@
+body {
+    background-color: #3E3128;
+}
+
+/* CSS for the Navbar */
+
+.navbuttons {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-text,
+.button-text {
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+    font-size: 20;
+}
+
+.navbar-text:hover,
+.button-text:hover {
+    background-color: #ccc;
+}
+
+.slogan {
+    position: absolute;
+    left: 10%;
+    top: 30%;
+    color: white;
+    font-size: 72;
+}
+
+/* CSS for the slideshow */
+
+.slideshow {
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+}
+
+.landing-slides {
+    max-width: 100%;
+    display: none;
+    overflow: hidden;
+}
+
+.prev .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+
+.dot {
+    position: relative;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    bottom: 36px;
+}
+
+.active,
+.dot:hover {
+    background-color: #717171;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 2s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.prevbutton,
+.nextbutton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.nextbutton {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prevbutton:hover,
+.nextbutton:hover {
+    background-color: rgba(175, 172, 172, 0.8);
+}
+
+
+/* 
+CSS for the expeditions and operations section 
+Note: currently all values for aligning text and buttons vertically are hardcoded, will
+attempt to find a workaround soon (or maybe never :P)
+*/
+
+.expedition-img {
+    background-image: url("../img/expeditions.png");
+    min-height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.operations-img {
+    background-image: url("../img/operations.png");
+    min-height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.expedition-desc {
+    position: absolute;
+    left: 50px;
+    top: 172%;
+    color: white;
+    font-size: 24;
+    max-height: 60px;
+    max-width: 50%;
+}
+
+.operations-desc {
+    position: absolute;
+    left: 50px;
+    top: 275%;
+    color: white;
+    font-size: 24;
+    max-height: 60px;
+    max-width: 50%;
+}
+
+.operations-button {
+    position: absolute;
+    left: 50px;
+    top: 308%;
+}
+
+.expedition-button {
+    position: absolute;
+    left: 50px;
+    top: 200%;
+}
+
+
+/* CSS for the projects section */
+.projects {
+    display: flex;
+}
+
+.project {
+    position: absolute;
+    top: 400%;
+}
+
+.projects-img {
+    background-image: url("../img/projects-2.jpg");
+    min-height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+}
+
+.project-left {
+    left: 30px;
+}
+
+.project-button-left {
+    position: absolute;
+    top: 90%;
+    left: 110px;
+}
+
+.project-center {
+    left: 31.5%;
+}
+
+.project-button-center {
+    position: absolute;
+    top: 90%;
+    left: 140px;
+}
+
+.project-right {
+    left: 66.5%;
+}
+
+.project-button-right {
+    position: absolute;
+    top: 72.5%;
+    left: 140px;
+}
+
+.project-text-left {
+    word-wrap: break-word;
+    max-width: 30%;
+    max-height: 100%;
+    margin-bottom: 50px;
+}
+
+.project-text-center {
+    max-width: 50%;
+    max-height: 100%;
+    margin-bottom: 50px;
+}
+
+.project-text-right {
+    max-width: 100%;
+    max-height: 100%;
+    margin-bottom: 50px;
+    height: 225px;
+}
+
+.project-button {
+    padding: 16px;
+    max-width: 150px;
+    max-height: 60px;
+    margin-top: 10px;
+}
+
+.project-text {
+    text-align: center;
+    color: white;
+    font-size: 22;
+}
+
+.grid-display {
+    display: grid;
+    column-gap: 50px;
+}
+
+
+/* CSS for the footer */
+footer {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    width: 100%;
+    background-color: #222;
+    color: #fff;
+}
+
+.footer-content {
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}

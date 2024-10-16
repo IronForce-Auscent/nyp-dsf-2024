@@ -1,0 +1,16 @@
+<script>
+    var nums = [7, 4, 89, 10, 33, 49];
+    var sum = 0;
+    var product = 0;
+
+    for (i = 0; i < nums.length; i++) {
+        sum += nums[i];
+        if (i == 0) {
+            product = nums[i];
+        } else {
+            product *= nums[i];
+        }
+    }
+    document.write("Sum: " + sum + "<br>");
+    document.write("Product: " + product);
+</script>

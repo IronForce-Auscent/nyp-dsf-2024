@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Part a
+        let n = 5;
+        for (i = 1; i <= n; i++) {
+            let padding = n - i;
+            let message_a = '\xa0\xa0'.repeat(padding) + "*".repeat(i * 2 - 1) + "<br>";
+            document.write(message_a);
+        }
+        for (i = n - 1; i >= 1; i--) {
+            let padding = n - i;
+            let message_a = '\xa0\xa0'.repeat(padding) + "*".repeat(i * 2 - 1) + "<br>";
+            document.write(message_a);
+        }
+
+        // Part b
+        for (i = 1; i <= n; i++) {
+            let padding = n - i;
+            let message_b = "x".repeat(padding);
+            let triangleChunk = i * 2 - 1;
+            
+        }
+    </script>
+</body>
+</html>

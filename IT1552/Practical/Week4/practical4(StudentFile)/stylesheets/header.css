@@ -1,0 +1,33 @@
+header {
+    display: inline-block;
+    background-color: rgba(0, 255, 0, 0.3);
+    width: 100%;
+}
+
+ul {
+    list-style: none;
+    height: 16px;
+}
+
+li {
+    display: inline;
+    text-align: center;
+    margin-right: 60px;
+}
+
+li a {
+    text-decoration: none;
+    color: white;
+    border-radius: 8px;
+    padding: 12px 24px;
+    background-color: green;
+}
+
+a:hover {
+    color: green;
+    background-color: white;
+}
+
+.current {
+    background-color: rgba(0, 0, 0, 0.3);
+}

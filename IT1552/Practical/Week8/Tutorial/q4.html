@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function start_spec_str(string) {
+            const substring = "Super";
+            if (string.substring(0, substring.length) === substring) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        console.log(start_spec_str("Superman"));
+        console.log(start_spec_str("Supreme"));
+        console.log(start_spec_str("Sup"));
+    </script>
+</body>
+</html>
