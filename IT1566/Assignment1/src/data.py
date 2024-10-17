@@ -5,10 +5,10 @@ from . import db
 import os
 import sqlite3
 
-DB_CORE_URI = "instance/primary.db"
+DB_PRIMARY_URI = os.getenv("DB_PRIMARY_URI", "sqlite:///db.sqlite3")
 
 class DBAPI():
-    def __init__(self, db_uri: str = DB_CORE_URI, table_names: list = None):
+    def __init__(self, db_uri: str = DB_PRIMARY_URI, table_names: list = None):
         self.__db_uri: str = db_uri
         self.__table_names: list = table_names
         
@@ -50,36 +50,4 @@ class DBAPI():
             __cursor = __conn.cursor()
             __cursor.execute(query, tuple(filters.values()))
             __conn.commit()
-        return True
-
-
-class AccountsHandler():
-    def __init__(self):
-        self.db_api = DBAPI(
-            table_names=["accounts"]
-        )
-    
-    def check_for_existing_user(self, username: str, email: str) -> bool:
-        results = self.db_api.query_data({"username": username, "email": email})
-        return results["accounts"] != []
-    
-    def register_new_user(self, username: str, email: str, password: str) -> bool:
-        if self.check_for_existing_user(username, email):
-            return False
-        hashed_password = generate_password_hash(password)
-        self.db_api.insert_data("accounts", {"username": username, "email": email, "password": hashed_password, "points": 0, "priv_lvl": 0})
-        return True
-    
-    def login_user(self, email: str, password: str) -> bool:
-        results = self.db_api.query_data({"email": email})
-        if results["accounts"] == []:
-            return False
-        user = results["accounts"][0]
-        if not check_password_hash(user[2], password):
-            return False
-        class User(UserMixin):
-            pass
-        logged_user = User()
-        logged_user.id = user[0]
-        login_user(logged_user)
         return True
