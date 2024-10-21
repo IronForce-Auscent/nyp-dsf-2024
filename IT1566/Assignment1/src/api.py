@@ -18,9 +18,9 @@ def get_user_points():
     user_id = request.args.get("user_id")
     if user_id and User.query.get(user_id):
         logs.create_log(f"Requested user points for {user_id}", 1)
-        return jsonify({"status": "200", "user_id": user_id, "points": User.query.get(user_id).points})
+        return jsonify({"status": "200", "points": User.query.get(user_id).points})
     logs.create_log(f"Failed to retrieve user points for {user_id}", 2)
-    return jsonify({"status": "400"})
+    return jsonify({"status": "400", "message": "No user found with user ID"})
 
 @api.get("/api/rewards/list")
 def get_rewards_list():
@@ -72,7 +72,7 @@ def exchange_rewards():
 def get_collection_points_list():
     with open("static/data/collection_points.json", "r") as f:
         logs.create_log("Requested collection points list", 1)
-        return jsonify({"status": "200", "collection_points": json.load(f)})
+        return jsonify({"status": "200", "message": json.load(f)})
 
 # Internal API routes
 
@@ -99,7 +99,7 @@ def modify_account_points():
 # Development endpoints
 @api.post("/dev/user/create")
 def dev_create_user():
-    auth_key = request.headers.get("Authorization")
+    auth_key = request.headers.get("auth_token")
     if auth_key == DEV_TOKEN:
         try:
             email = request.form.get("email")
@@ -120,7 +120,7 @@ def dev_create_user():
 
 @api.post("/dev/user/delete")
 def dev_delete_user():
-    auth_key = request.headers.get("Authorization")
+    auth_key = request.headers.get("auth_token")
     if auth_key == DEV_TOKEN:
         try:
             user_id = request.form.get("user_id")
@@ -137,7 +137,7 @@ def dev_delete_user():
 
 @api.post("/dev/points/set")
 def dev_set_points():
-    auth_key = request.headers.get("Authorization")
+    auth_key = request.headers.get("auth_token")
     if auth_key == DEV_TOKEN:
         try:
             user_id = request.form.get("user_id")
