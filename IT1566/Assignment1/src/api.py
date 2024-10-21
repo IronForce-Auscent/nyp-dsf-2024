@@ -18,7 +18,7 @@ def get_user_points():
     user_id = request.args.get("user_id")
     if user_id and User.query.get(user_id):
         logs.create_log(f"Requested user points for {user_id}", 1)
-        return jsonify({"user_id": user_id, "points": User.query.get(user_id).points})
+        return jsonify({"status": "200", "user_id": user_id, "points": User.query.get(user_id).points})
     logs.create_log(f"Failed to retrieve user points for {user_id}", 2)
     return jsonify({"status": "400"})
 
@@ -26,7 +26,7 @@ def get_user_points():
 def get_rewards_list():
     with open("static/data/rewards.json", "r") as f:
         logs.create_log("Requested rewards list", 1)
-        return jsonify({"rewards": json.load(f)})
+        return jsonify({"status": "200", "rewards": json.load(f)})
 
 @api.post("/api/rewards/exchange")
 def exchange_rewards():
@@ -72,7 +72,7 @@ def exchange_rewards():
 def get_collection_points_list():
     with open("static/data/collection_points.json", "r") as f:
         logs.create_log("Requested collection points list", 1)
-        return jsonify({"collection_points": json.load(f)})
+        return jsonify({"status": "200", "collection_points": json.load(f)})
 
 # Internal API routes
 
@@ -97,7 +97,7 @@ def modify_account_points():
     return jsonify({"status": "Not implemented yet"})
 
 # Development endpoints
-@api.route("/dev/user/create", methods=["POST"])
+@api.post("/dev/user/create")
 def dev_create_user():
     auth_key = request.headers.get("Authorization")
     if auth_key == DEV_TOKEN:
@@ -106,19 +106,19 @@ def dev_create_user():
             username = request.form.get("username")
             password = request.form.get("password")
             points = request.form.get("points")
-            priv_lvl = request.form.get("priv_lvl")
+            priv_lvl = request.form.get("priv_lvl") if request.form.get("priv_lvl") else 0
             new_user = User(email=email, username=username, password=generate_password_hash(password), points=points, priv_lvl=priv_lvl)
             db.session.add(new_user)
             db.session.commit()
             logs.create_log(f"Created new user {username} (Auth key: {auth_key})", 1)
-            return jsonify({"status": "User created"})
+            return jsonify({"status": "200"})
         except Exception as e:
             logs.raise_exception(f"Failed to create user: {str(e)}")
-            return jsonify({"status": "Error", "message": str(e)})
+            return jsonify({"status": "400", "message": str(e)})
     logs.raise_exception(f"Unauthorized access attempt (Auth key: {auth_key})")
-    return jsonify({"status": "Unauthorized"})
+    return jsonify({"status": "401"})
 
-@api.route("/dev/user/delete", methods=["POST"])
+@api.post("/dev/user/delete")
 def dev_delete_user():
     auth_key = request.headers.get("Authorization")
     if auth_key == DEV_TOKEN:
@@ -128,14 +128,14 @@ def dev_delete_user():
             db.session.delete(user)
             db.session.commit()
             logs.create_log(f"Deleted user {user_id} (Auth key: {auth_key})", 1)
-            return jsonify({"status": "User deleted"})
+            return jsonify({"status": "200"})
         except Exception as e:
             logs.raise_exception(f"Failed to delete user: {str(e)}")
-            return jsonify({"status": "Error", "message": str(e)})
+            return jsonify({"status": "400", "message": str(e)})
     logs.raise_exception(f"Unauthorized access attempt (Auth key: {auth_key})")
-    return jsonify({"status": "Unauthorized"})
+    return jsonify({"status": "401"})
 
-@api.route("/dev/points/set", methods=["POST"])
+@api.post("/dev/points/set")
 def dev_set_points():
     auth_key = request.headers.get("Authorization")
     if auth_key == DEV_TOKEN:
@@ -146,9 +146,9 @@ def dev_set_points():
             user.points = points
             db.session.commit()
             logs.create_log(f"Set points for user {user_id} (Auth key: {auth_key})", 1)
-            return jsonify({"status": "Points set"})
+            return jsonify({"status": "200"})
         except Exception as e:
             logs.raise_exception(f"Failed to set points: {str(e)}")
-            return jsonify({"status": "Error", "message": str(e)})
+            return jsonify({"status": "400", "message": str(e)})
     logs.raise_exception(f"Unauthorized access attempt (Auth key: {auth_key})")
-    return jsonify({"status": "Unauthorized"})
+    return jsonify({"status": "401"})
